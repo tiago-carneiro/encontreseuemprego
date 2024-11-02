@@ -32,7 +32,7 @@
 </head>
 
 <body>
-    <div class="container-xxl bg-white p-0">
+    <div class="container-xxl bg-white p-0" id="inicio">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
@@ -44,7 +44,7 @@
 
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-            <a href="index.html" class="navbar-brand d-flex align-items-center text-center py-0 px-4 px-lg-5">
+            <a href="index.html" class="navbar-brand d-flex align-items-center text-center py-0 px-3 px-lg-4">
                 <h1 class="m-0 text-primary">Encontre seu emprego</h1>
             </a>
             <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -72,7 +72,7 @@
                             <div class="row justify-content-start">
                                 <div class="col-10 col-lg-8">
                                     <h1 class="display-3 text-white animated slideInDown mb-4">Recrutamento</h1>
-                                    <p class="fs-5 fw-medium text-white mb-4 pb-2">Realizamos processos seletivos personalizados, identificando os melhores profissionais para as vagas disponíveis. Com abordagens inovadoras, conectamos talentos com empresas renomadas, garantindo a escolha certa para ambas as partes.</p>
+                                    <p class="fs-5 fw-medium text-white mb-4 pb-2">Conectamos talentos a empresas por meio de seleções personalizadas e inovadoras.</p>
                                     <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Saber mais</a>
                                 </div>
                             </div>
@@ -86,7 +86,7 @@
                             <div class="row justify-content-start">
                                 <div class="col-10 col-lg-8">
                                     <h1 class="display-3 text-white animated slideInDown mb-4">Treinamento</h1>
-                                    <p class="fs-5 fw-medium text-white mb-4 pb-2">Oferecemos programas de capacitação para aprimorar as habilidades dos colaboradores, promovendo o crescimento profissional e a excelência nas atividades laborais. Nosso foco é garantir que as equipes estejam preparadas para os desafios do mercado atual.</p>
+                                    <p class="fs-5 fw-medium text-white mb-4 pb-2">Oferecemos capacitação para desenvolver equipes e prepará-las para os desafios do mercado.</p>
                                     <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Saber mais</a>
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                             <div class="row justify-content-start">
                                 <div class="col-10 col-lg-8">
                                     <h1 class="display-3 text-white animated slideInDown mb-4">Consultoria</h1>
-                                    <p class="fs-5 fw-medium text-white mb-4 pb-2">Proporcionamos consultoria personalizada em gestão de carreira e desenvolvimento profissional. Nossa equipe de especialistas oferece suporte estratégico para impulsionar o crescimento profissional dos indivíduos e promover a excelência em suas áreas de atuação.</p>
+                                    <p class="fs-5 fw-medium text-white mb-4 pb-2">Oferecemos consultoria personalizada em gestão de carreira para impulsionar o crescimento profissional e a excelência.</p>
                                     <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Saber mais</a>
                                 </div>
                             </div>
@@ -115,70 +115,68 @@
         <div class="container-xxl py-5" id="vagas">
             <div class="container">
                 <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Vagas</h1>
-                <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="tab-content">
-                        <div class="fade show p-0">
-                            <div class="job-item p-4 mb-4">
-                                <div class="row g-4">
-                                    <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                                        <div class="text-start ps-4">
-                                            <h5 class="mb-3">Operador Técnico</h5>
-                                            <span class="text-truncate me-3"><i class="fa fa-building text-primary me-2"></i>DMSYS Sistemas Integrados</span>
-                                            <span class="text-truncate me-3"><i class="fa fa-globe text-primary me-2"></i>Nacional</span>
-                                            <span class="text-truncate me-3"><i class="fa fa-map-marker-alt  text-primary me-2"></i>Rio de Janeiro, Barra da Tijuca</span>
-                                            <span class="text-truncate me-3"><i class="fa fa-building-user text-primary me-2"></i>Presencial</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
-                                        <div class="d-flex mb-3">
-                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Detalhes</button>
-                                        </div>
-                                        <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Cadastro: 01 Out, 2024</small>
+                <div class="text-center wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="fade show p-0">
+                        <div class="job-item p-4 mb-4">
+                            <div class="row g-4">
+                                <div class="col-sm-12 col-md-8 d-flex align-items-center">
+                                    <div class="text-start ps-4">
+                                        <h5 class="mb-3">Operador Técnico</h5>
+                                        <span class="text-truncate me-3"><i class="fa fa-building text-primary me-2"></i>DMSYS Sistemas Integrados</span>
+                                        <span class="text-truncate me-3"><i class="fa fa-globe text-primary me-2"></i>Nacional</span>
+                                        <span class="text-truncate me-3"><i class="fa fa-map-marker-alt  text-primary me-2"></i>Rio de Janeiro, Barra da Tijuca</span>
+                                        <span class="text-truncate me-3"><i class="fa fa-building-user text-primary me-2"></i>Presencial</span>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="job-item p-4 mb-4">
-                                <div class="row g-4">
-                                    <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                                        <div class="text-start ps-4">
-                                            <h5 class="mb-3">Salesforce Commerce Cloud Developer Senior</h5>
-                                            <span class="text-truncate me-3"><i class="fa fa-building text-primary me-2"></i>iTRecruiter</span>
-                                            <span class="text-truncate me-3"><i class="fa fa-globe text-primary me-2"></i>Internacional</span>
-                                            <span class="text-truncate me-3"><i class="fa fa-house-laptop text-primary me-2"></i>Remoto</span>
-                                        </div>
+                                <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
+                                    <div class="d-flex mb-3">
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Detalhes</button>
                                     </div>
-                                    <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
-                                        <div class="d-flex mb-3">
-                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Detalhes</button>
-                                        </div>
-                                        <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Cadastro: 01 Out, 2024</small>
-                                    </div>
+                                    <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Cadastro: 01 Out, 2024</small>
                                 </div>
                             </div>
-
-                            <div class="job-item p-4 mb-4">
-                                <div class="row g-4">
-                                    <div class="col-sm-12 col-md-8 d-flex align-items-center">
-                                        <div class="text-start ps-4">
-                                            <h5 class="mb-3">Oracle PL/SQL Developer</h5>
-                                            <span class="text-truncate me-3"><i class="fa fa-building text-primary me-2"></i>iTRecruiter</span>
-                                            <span class="text-truncate me-3"><i class="fa fa-globe text-primary me-2"></i>Internacional</span>
-                                            <span class="text-truncate me-3"><i class="fa fa-map-marker-alt  text-primary me-2"></i>Lisboa - PT</span>
-                                            <span class="text-truncate me-3"><i class="fa fa-house-circle-check text-primary me-2"></i>Híbrido</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
-                                        <div class="d-flex mb-3">
-                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Detalhes</button>
-                                        </div>
-                                        <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Cadastro: 01 Out, 2024</small>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <a class="btn btn-primary py-3 px-5" href="">Ver mais...</a>
                         </div>
+
+                        <div class="job-item p-4 mb-4">
+                            <div class="row g-4">
+                                <div class="col-sm-12 col-md-8 d-flex align-items-center">
+                                    <div class="text-start ps-4">
+                                        <h5 class="mb-3">Salesforce Commerce Cloud Developer Senior</h5>
+                                        <span class="text-truncate me-3"><i class="fa fa-building text-primary me-2"></i>iTRecruiter</span>
+                                        <span class="text-truncate me-3"><i class="fa fa-globe text-primary me-2"></i>Internacional</span>
+                                        <span class="text-truncate me-3"><i class="fa fa-house-laptop text-primary me-2"></i>Remoto</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
+                                    <div class="d-flex mb-3">
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Detalhes</button>
+                                    </div>
+                                    <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Cadastro: 01 Out, 2024</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="job-item p-4 mb-4">
+                            <div class="row g-4">
+                                <div class="col-sm-12 col-md-8 d-flex align-items-center">
+                                    <div class="text-start ps-4">
+                                        <h5 class="mb-3">Oracle PL/SQL Developer</h5>
+                                        <span class="text-truncate me-3"><i class="fa fa-building text-primary me-2"></i>iTRecruiter</span>
+                                        <span class="text-truncate me-3"><i class="fa fa-globe text-primary me-2"></i>Internacional</span>
+                                        <span class="text-truncate me-3"><i class="fa fa-map-marker-alt  text-primary me-2"></i>Lisboa - PT</span>
+                                        <span class="text-truncate me-3"><i class="fa fa-house-circle-check text-primary me-2"></i>Híbrido</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
+                                    <div class="d-flex mb-3">
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Detalhes</button>
+                                    </div>
+                                    <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Cadastro: 01 Out, 2024</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a class="btn btn-primary py-3 px-5" href="">Ver mais...</a>
                     </div>
                 </div>
             </div>
@@ -225,7 +223,7 @@
   
         <!-- Jobs End -->
 
-        <!-- About Start -->
+        <!-- about Start -->
         <div class="container-xxl py-5" id="sobre">
             <div class="container">
                 <div class="row g-5 align-items-center">
@@ -247,39 +245,72 @@
                     </div>
                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                         <h1 class="mb-4">Consultoria de Recolocação Especializada</h1>
-                        <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                        <p class="mb-4">Além de disponibilizar as vagas gratuitamente, contribuindo com recrutadores, sem a necessidade de cadastro, também oferecemos algumas consultorias.</p>
                         <p><i class="fa fa-check text-primary me-3"></i>Conectando Talentos & Empresas</p>
                         <p><i class="fa fa-check text-primary me-3"></i>Impactando o Mercado de Trabalho</p>
                         <p><i class="fa fa-check text-primary me-3"></i>Consultoria de Recolocação Individual</p>
                         <p><i class="fa fa-check text-primary me-3"></i>Análise de currículo</p>
+                        <p><a href="#" class="btn btn-primary">Quero agendar</a></p>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="container-fluid mb-5 wow fadeIn" data-wow-delay="0.1s">
+            <div class="row g-2">
+                <div class="col-md-4 d-flex align-items-stretch" >
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Recrutamento</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Seleção de Talentos</h6>
+                            <p class="card-text">Realizamos processos seletivos personalizados, identificando os melhores profissionais para as vagas disponíveis. Com abordagens inovadoras, conectamos talentos com empresas renomadas, garantindo a escolha certa para ambas as partes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex align-items-stretch">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Treinamento</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Desenvolvimento Profissional</h6>
+                            <p class="card-text">Oferecemos programas de capacitação para aprimorar as habilidades dos colaboradores, promovendo o crescimento profissional e a excelência nas atividades laborais. Nosso foco é garantir que as equipes estejam preparadas para os desafios do mercado atual.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex align-items-stretch">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Consultoria</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Orientação Especializada</h6>
+                            <p class="card-text">Proporcionamos consultoria personalizada em gestão de carreira e desenvolvimento profissional. Nossa equipe de especialistas oferece suporte estratégico para impulsionar o crescimento profissional dos indivíduos e promover a excelência em suas áreas de atuação.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- About End -->
+        <!-- about End -->
 
-
-        <!-- Footer Start -->
-        <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-            <div class="container">
-                <div class="copyright">
-                    <div class="row">
-                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
-							
-							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
-                        </div>
-                        <div class="col-md-6 text-center text-md-end">
-                            <div class="footer-menu">
-                                <a href="">Home</a>
-                                <a href="">Cookies</a>
-                                <a href="">Help</a>
-                                <a href="">FQAs</a>
+        <!-- Contact Start -->
+        <div class="container-xxl py-5" id="contato">
+            <div class="container text-center align-items-center">
+                <h1 class="mb-5 wow fadeInUp" data-wow-delay="0.1s">Contato</h1>
+                    <div class="wow fadeInUp align-items-center" data-wow-delay="0.3s">
+                        <p>Para informações, sugestões e disponibilizar suaS vagaS aqui no nosso site, envie-nos um e-mail.</p>
+                    </div>
+                    <div class="wow fadeIn" data-wow-delay="0.5s">
+                        <div class="d-inline-flex align-items-center bg-light rounded p-4">
+                            <div class="bg-white border rounded d-flex flex-shrink-0 align-items-center justify-content-center me-3" style="width: 45px; height: 45px;">
+                                <i class="fa fa-envelope-open text-primary"></i>
                             </div>
+                            <span>contato@encontreseuemprego.com.br</span>
                         </div>
                     </div>
-                </div>
+            </div>
+        </div>
+        <!-- Contact End -->
+       
+        <!-- Footer Start -->
+        <div class="container-fluid bg-dark text-white-50 footer pt-3 pb-3 wow fadeIn" data-wow-delay="0.1s">
+            <div class="text-center">
+                Ao utilizar qualquer vaga deste site, não esqueça de nos mencionar.
             </div>
         </div>
         <!-- Footer End -->

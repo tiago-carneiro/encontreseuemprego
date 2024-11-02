@@ -34,11 +34,20 @@
             $('.back-to-top').fadeOut('slow');
         }
     });
+
     $('.back-to-top').click(function () {
         $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
         return false;
     });
 
+    $('.navbar-nav .nav-link').on('click', function() {
+        // Remove a classe 'active' de todos os itens do menu
+        $('.navbar-nav .nav-link').removeClass('active');
+        
+        // Adiciona a classe 'active' apenas ao item clicado
+        $(this).addClass('active');
+        $('.navbar-collapse').collapse('hide');
+    });
 
     // Header carousel
     $(".header-carousel").owlCarousel({
