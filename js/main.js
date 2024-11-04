@@ -124,11 +124,11 @@ if (match) {
           "dataHora": "10/1/2024 11:18:47",
           "titulo": "OPERADOR TÉCNICO",
           "empresa": "DMSYS SISTEMAS INTEGRADOS",
-          "aplicacao": "",
+          "aplicacao": "curriculos@dmsys.com.br",
           "abrangencia": "N",
           "formato": "P",
           "local": "Rio de Janeiro, Barra da Tijuca",
-          "contato": "curriculos@dmsys.com.br",
+          "contato": "",
           "descricao": "Realizar o monitoramento dos empreendimentos através do controle de CFTV, SDAI, SCA e Automação.",
           "requisitos" : 
             [
@@ -170,12 +170,13 @@ if (match) {
           "local": "Chapecó-SC",
           "contato": "",
           "descricao": "",
-          "requisitos" : [
-            "Manutenção preventiva e corretiva GLB",
-            "Análise de Chamados Técnicos",
-            "Elaboração e Inspeção de procedimentos",
-            "Controle de indicadores",
-            "Conhecimento com solda"
+          "requisitos" : 
+            [
+                "Manutenção preventiva e corretiva GLB",
+                "Análise de Chamados Técnicos",
+                "Elaboração e Inspeção de procedimentos",
+                "Controle de indicadores",
+                "Conhecimento com solda"
             ]
         },
         {
@@ -358,7 +359,7 @@ if (match) {
           "dataHora": "10/2/2024 15:38:28",
           "titulo": " Analista Fiscal",
           "empresa": "Connectabil",
-          "aplicacao": "https://www.connectabil.com/e",
+          "aplicacao": "https://www.connectabil.com/",
           "abrangencia": "N",
           "formato": "P",
           "local": "Jardim Ampliação, São Paulo-SP",
@@ -386,6 +387,9 @@ if (match) {
         }
       ];
 
+    
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const urlRegex = /^(https?:\/\/|www\.)[^\s/$.?#].[^\s]*$/;
 
     function createJobItems() {
         const $container = $('#job-container');
@@ -395,17 +399,17 @@ if (match) {
 
         const itensPagina = vagas.slice(inicio, fim);
     
-        $.each(itensPagina, function(index, job) {
+        $.each(itensPagina, function(index, item) {
             const $jobItem = $(`
                 <div class="job-item p-4 mb-4">
                     <div class="row g-4">
                         <div class="col-sm-12 col-md-8 d-flex align-items-center">
                             <div class="text-start ps-4">
-                                <h5 class="mb-3">${job.titulo}</h5>
-                                ${job.empresa ? `<span class="text-truncate me-3"><i class="fa fa-building text-primary me-2"></i>${job.empresa}</span>` : ''}
-                                <span class="text-truncate me-3"><i class="fa fa-globe text-primary me-2"></i>${job.abrangencia == 'N' ? 'Nacional' : 'Internacional'}</span>
-                                 ${job.local ? `<span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>${job.local}</span>` : ''}
-                                ${createFormato(job.formato)}
+                                <h5 class="mb-3">${item.titulo}</h5>
+                                ${item.empresa ? `<span class="text-truncate me-3"><i class="fa fa-building text-primary me-2"></i>${item.empresa}</span>` : ''}
+                                <span class="text-truncate me-3"><i class="fa fa-globe text-primary me-2"></i>${item.abrangencia == 'N' ? 'Nacional' : 'Internacional'}</span>
+                                 ${item.local ? `<span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>${item.local}</span>` : ''}
+                                ${createFormato(item.formato)}
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
@@ -423,6 +427,17 @@ if (match) {
                     <span class="text-truncate me-3"><i class="fa fa-globe text-primary me-2"></i>${item.abrangencia == 'N' ? 'Nacional' : 'Internacional'}</span>
                     ${item.local ? `<span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>${item.local}</span>` : ''}
                     ${createFormato(item.formato)}`));
+
+                const cadastro = emailRegex.test(item.aplicacao) ? `Envie email para <span class="text-primary" style="cursor: default; text-decoration: underline;">${item.aplicacao}</span>` : 
+                                 urlRegex.test(item.aplicacao) ? `Para acessar o site de aplicação <a href="${item.aplicacao}" target="_blank" class="text-primary">clique aqui</a>` : 
+                                 '';
+
+                //const recrutador = 
+
+                $("#modalBody").html($(`<h4 class="mb-3">Descrição</h4>
+                                        ${item.descricao ? `<p>${item.descricao}</p>` : ''}
+                                        ${item.requisitos.length > 0 ? createLista(item.requisitos): ''}
+                                        <h4 class="mb-3">Cadastro</h4><p>${cadastro}</p>`));
             });
 
             $jobItem.find('#verMaisDiv').append($button);
@@ -433,6 +448,17 @@ if (match) {
         if (fim >= vagas.length)
             $('#verMaisVagas').hide();
     }
+
+    var createLista = function(items)
+    {
+        const $ul = $('<ul class="list-unstyled"></ul>');
+        items.forEach(item => {
+            const $li = $(`<li><i class="fa fa-angle-right text-primary me-2"></i>${item}</li>`);
+            $ul.append($li);
+        });
+        return $ul.prop('outerHTML');;
+    }
+
 
     var createFormato = function(value)
     {
