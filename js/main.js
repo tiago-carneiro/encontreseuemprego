@@ -409,13 +409,23 @@ if (match) {
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
-                            <div class="d-flex mb-3">
-                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Detalhes</button>
+                            <div class="d-flex mb-3" id="verMaisDiv">
                             </div>
                         </div>
                     </div>
                 </div>
             `);
+
+            const $button = $('<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Detalhes</button>');
+            $button.click(function() {
+                $("#modalHeader").html($(`<h5 class="mb-3">${item.titulo}</h5>
+                    ${item.empresa ? `<span class="text-truncate me-3"><i class="fa fa-building text-primary me-2"></i>${item.empresa}</span>` : ''}
+                    <span class="text-truncate me-3"><i class="fa fa-globe text-primary me-2"></i>${item.abrangencia == 'N' ? 'Nacional' : 'Internacional'}</span>
+                    ${item.local ? `<span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>${item.local}</span>` : ''}
+                    ${createFormato(item.formato)}`));
+            });
+
+            $jobItem.find('#verMaisDiv').append($button);
     
             $container.append($jobItem);
         });
@@ -446,3 +456,4 @@ if (match) {
     createJobItems();
     
 })(jQuery);
+
