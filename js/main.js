@@ -28,7 +28,6 @@
     // Initiate the wowjs
     new WOW().init();
 
-
     // Sticky Navbar
     $(window).scroll(function () {
         if ($(this).scrollTop() > 300) {
@@ -387,20 +386,60 @@
         }
     ];
 
-
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const urlRegex = /^(https?:\/\/|www\.)[^\s/$.?#].[^\s]*$/;
 
-    function createJobItems() {
+    function criarRegexIgnorandoAcentos(texto) {
+        // Normaliza o texto para remover acentos
+        const textoNormalizado = texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        // Cria uma expressão regular ignorando maiúsculas e minúsculas
+        return new RegExp(textoNormalizado, "i");
+    }
+
+    function createJobItems(reset) {
         const $container = $('#job-container');
+        if (reset) {
+            $container.html('');
+            paginaAtual = 1;
+        }
 
         const inicio = (paginaAtual - 1) * itensPorPagina;
         const fim = inicio + itensPorPagina;
 
-        const itensPagina = vagas.slice(inicio, fim);
+        let filteredItems = vagas;
+        const filtro = $('#filtro').val();
+        const abrangencia = $('#abrangencia').val();
+        const formato = $('#formato').val();
 
-        $.each(itensPagina, function (index, item) {
-            const $jobItem = $(`
+        if (filtro) {
+            const filtroList = filtro.split(',').map(f => f.trim());
+
+            filteredItems = filteredItems.filter(vaga => {
+                return filtroList.some(filtro => {
+                    const regex = criarRegexIgnorandoAcentos(filtro);
+
+                    // Verifica se o termo existe em algum campo
+                    return regex.test(vaga.titulo.normalize("NFD").replace(/[\u0300-\u036f]/g, "")) ||
+                        regex.test(vaga.descricao.normalize("NFD").replace(/[\u0300-\u036f]/g, "")) ||
+                        vaga.requisitos.some(requisito => regex.test(requisito.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) //||
+                    //regex.test(vaga.local.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+                });
+            });
+        }
+
+        if (abrangencia) {
+            filteredItems = filteredItems.filter(f => f.abrangencia === abrangencia);
+        }
+
+        if (formato) {
+            filteredItems = filteredItems.filter(f => f.formato === formato);
+        }
+
+        const itensPagina = filteredItems.slice(inicio, fim);
+
+        if (itensPagina.length > 0) {
+            $.each(itensPagina, function (index, item) {
+                const $jobItem = $(`
                 <div class="job-item p-4 mb-4">
                     <div class="row g-4">
                         <div class="col-sm-12 col-md-8 d-flex align-items-center">
@@ -420,33 +459,39 @@
                 </div>
             `);
 
-            const $button = $('<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Detalhes</button>');
-            $button.click(function () {
-                $("#modalHeader").html($(`<h5 class="mb-3">${item.titulo}</h5>
+                const $button = $('<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Detalhes</button>');
+                $button.click(function () {
+                    $("#modalHeader").html($(`<h5 class="mb-3">${item.titulo}</h5>
                     ${item.empresa ? `<span class="text-truncate me-3"><i class="fa fa-building text-primary me-2"></i>${item.empresa}</span>` : ''}
                     <span class="text-truncate me-3"><i class="fa fa-globe text-primary me-2"></i>${item.abrangencia == 'N' ? 'Nacional' : 'Internacional'}</span>
                     ${item.local ? `<span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>${item.local}</span>` : ''}
                     ${createFormato(item.formato)}`));
 
-                const cadastro = emailRegex.test(item.aplicacao) ? `Envie email para <span class="text-primary" style="cursor: default; text-decoration: underline;">${item.aplicacao}</span>` :
-                    urlRegex.test(item.aplicacao) ? `Para acessar o site de aplicação <a href="${item.aplicacao}" target="_blank" class="text-primary">clique aqui</a>` :
-                        '';
+                    const cadastro = emailRegex.test(item.aplicacao) ? `Envie email para <span class="text-primary" style="cursor: default; text-decoration: underline;">${item.aplicacao}</span>` :
+                        urlRegex.test(item.aplicacao) ? `Para acessar o site de aplicação <a href="${item.aplicacao}" target="_blank" class="text-primary">clique aqui</a>` :
+                            '';
 
-                //const recrutador = 
+                    //const recrutador = 
 
-                $("#modalBody").html($(`<h4 class="mb-3">Descrição</h4>
+                    $("#modalBody").html($(`<h4 class="mb-3">Descrição</h4>
                                         ${item.descricao ? `<p>${item.descricao}</p>` : ''}
                                         ${item.requisitos.length > 0 ? createLista(item.requisitos) : ''}
                                         <h4 class="mb-3">Cadastro</h4><p>${cadastro}</p>`));
+                });
+
+                $jobItem.find('#verMaisDiv').append($button);
+
+                $container.append($jobItem);
             });
+        }
+        else {
+            $container.append('<p class="mb-5 mt-4 fs-5">Nenhuma vaga encontrada com os filtros selecionados</p>');
+        }
 
-            $jobItem.find('#verMaisDiv').append($button);
-
-            $container.append($jobItem);
-        });
-
-        if (fim >= vagas.length)
+        if (fim >= filteredItems.length)
             $('#verMaisVagas').hide();
+        else
+            $('#verMaisVagas').show();
     }
 
     var createLista = function (items) {
@@ -457,7 +502,6 @@
         });
         return $ul.prop('outerHTML');;
     }
-
 
     var createFormato = function (value) {
         switch (value) {
@@ -476,6 +520,23 @@
         paginaAtual++;
         createJobItems();
     });
+
+    let timeout;
+    $('#abrangencia, #formato').on('change', function () {
+        createJobItemsWithDelay(true);
+    });
+
+    $('#filtro').on('input', function () {
+        createJobItemsWithDelay(true);
+    });
+
+    var createJobItemsWithDelay = function () {
+        clearTimeout(timeout);
+
+        timeout = setTimeout(function () {
+            createJobItems(true);
+        }, 1400);
+    }
 
     createJobItems();
 
