@@ -53,12 +53,17 @@
     });
 
     $('.navbar-nav .nav-link').on('click', function () {
-        // Remove a classe 'active' de todos os itens do menu
+        event.preventDefault();
+
         $('.navbar-nav .nav-link').removeClass('active');
 
-        // Adiciona a classe 'active' apenas ao item clicado
         $(this).addClass('active');
         $('.navbar-collapse').collapse('hide');
+
+        const targetId = $(this).attr('href');
+        $('html, body').animate({
+            scrollTop: $(targetId).offset().top - 75
+        }, 1500, 'easeInOutExpo');
     });
 
     // Header carousel
