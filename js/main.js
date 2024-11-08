@@ -53,6 +53,7 @@
     });
 
     $('.navbar-nav .nav-link').on('click', function () {
+        const navbarHeight = $('nav').outerHeight(true);
         event.preventDefault();
 
         $('.navbar-nav .nav-link').removeClass('active');
@@ -62,7 +63,7 @@
 
         const targetId = $(this).attr('href');
         $('html, body').animate({
-            scrollTop: $(targetId).offset().top - 75
+            scrollTop: $(targetId).offset().top - navbarHeight
         }, 1500, 'easeInOutExpo');
     });
 
