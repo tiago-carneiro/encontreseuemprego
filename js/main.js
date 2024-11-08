@@ -1,18 +1,8 @@
 (function ($) {
     "use strict";
     /* 
-    const text = "Natalia Nobre  https://www.linkedin.com/in/nataliasnobre/";
-    const regex = /(.+?)\s+(https?:\/\/\S+)/;
-    const match = text.match(regex);
-    
-    if (match) {
-        const name = match[1];
-        const link = match[2];
-        console.log("Nome:", name);
-        console.log("Link:", link);
-    } else {
-        console.log("Nenhum match encontrado.");
-    }
+    https://linktr.ee/hrfernandalara
+    https://www.roberthalf.com/br/pt
     */
     // Spinner
     var spinner = function () {
@@ -67,43 +57,6 @@
         }, 1500, 'easeInOutExpo');
     });
 
-    // Header carousel
-    $(".header-carousel").owlCarousel({
-        autoplay: true,
-        smartSpeed: 1500,
-        items: 1,
-        dots: true,
-        loop: true,
-        nav: true,
-        navText: [
-            '<i class="bi bi-chevron-left"></i>',
-            '<i class="bi bi-chevron-right"></i>'
-        ]
-    });
-
-
-    // Testimonials carousel
-    $(".testimonial-carousel").owlCarousel({
-        autoplay: true,
-        smartSpeed: 1000,
-        center: true,
-        margin: 24,
-        dots: true,
-        loop: true,
-        nav: false,
-        responsive: {
-            0: {
-                items: 1
-            },
-            768: {
-                items: 2
-            },
-            992: {
-                items: 3
-            }
-        }
-    });
-
     const itensPorPagina = 6;
     let paginaAtual = 1;
     let vagas = [
@@ -114,7 +67,7 @@
             "aplicacao": "https://startrh-estagio.gupy.io/jobs/7875910",
             "abrangencia": "N",
             "formato": "P",
-            "local": "Jandira",
+            "local": "Jandira - Brasil",
             "contato": "jessica@startrh.io",
             "descricao": "Superior cursando em Engenharia química, Engenharia de materiais, Engenharia mecânica, Engenharia de produção ou Engenharia ambiental. Cursar no período noturno e com previsão de conclusão a partir de 12/2026.",
             "requisitos":
@@ -132,7 +85,7 @@
             "aplicacao": "curriculos@dmsys.com.br",
             "abrangencia": "N",
             "formato": "P",
-            "local": "Rio de Janeiro, Barra da Tijuca",
+            "local": "Rio de Janeiro - Brasil",
             "contato": "",
             "descricao": "Realizar o monitoramento dos empreendimentos através do controle de CFTV, SDAI, SCA e Automação.",
             "requisitos":
@@ -172,7 +125,7 @@
             "aplicacao": "rhjuscileneramos@gmail.com",
             "abrangencia": "N",
             "formato": "P",
-            "local": "Chapecó-SC",
+            "local": "Chapecó - Brasil",
             "contato": "",
             "descricao": "",
             "requisitos":
@@ -191,7 +144,7 @@
             "aplicacao": "curriculo@alinelacerda.com",
             "abrangencia": "N",
             "formato": "P",
-            "local": "Maringá e Londrina PR",
+            "local": "Maringá - Brasil",
             "contato": "",
             "descricao": "Contratação PJ com possibilidade de altos ganhos. Ajuda de custo inicial e Cursos de atualização em produtos financeiros",
             "requisitos":
@@ -208,7 +161,7 @@
             "aplicacao": "https://lnkd.in/ggyjdu3s",
             "abrangencia": "N",
             "formato": "P",
-            "local": "São Paulo-SP",
+            "local": "São Paulo - Brasil",
             "contato": "",
             "descricao": "Buscamos alguém que: Pensa e age a partir das perspectivas dos clientes. Demonstra interesse e curiosidade de conhecer os clientes, seus comportamentos e preferências para atender e superar suas expectativas; Demonstra compromisso permanente em aprender, ensinar e desenvolver, contribuindo para um ambiente descontraído, respeitoso e colaborativo, incentivando a diversidade; É flexível para se desprender de paradigmas e modelos mentais existentes. Busca soluções inovadoras e sustentáveis, para criar vantagens competitivas para o negócio, equilibrando os interesses econômicos, ambientais e sociais. ",
             "requisitos": []
@@ -220,7 +173,7 @@
             "aplicacao": "https://claro.gupy.io/jobs/7326441",
             "abrangencia": "N",
             "formato": "P",
-            "local": "São Paulo- SP",
+            "local": "São Paulo - Brasil",
             "contato": "",
             "descricao": "",
             "requisitos":
@@ -247,7 +200,7 @@
             "aplicacao": "https://claro.gupy.io/jobs/7868627",
             "abrangencia": "N",
             "formato": "P",
-            "local": "São Paulo - SP",
+            "local": "São Paulo - Brasil",
             "contato": "",
             "descricao": "",
             "requisitos":
@@ -276,7 +229,7 @@
             "aplicacao": "https://itrecruiter.jobs.recrut.ai/job/GKVA34",
             "abrangencia": "I",
             "formato": "H",
-            "local": "Porto / Pt",
+            "local": "Porto - Portugal",
             "contato": "",
             "descricao": "",
             "requisitos": [
@@ -293,7 +246,7 @@
             "aplicacao": "https://itrecruiter.jobs.recrut.ai/job/JRUH41",
             "abrangencia": "I",
             "formato": "H",
-            "local": "Lisboa-PT",
+            "local": "Lisboa - Portugal",
             "contato": "",
             "descricao": "Empresa portuguesa contrata para trabalho híbrido. Só serão aceitas inscrições de quem já mora em Portugal ou está a caminho. Inglês desejável mas não rejeitamos opções sem Inglês para já",
             "requisitos":
@@ -367,7 +320,7 @@
             "aplicacao": "https://www.connectabil.com/",
             "abrangencia": "N",
             "formato": "P",
-            "local": "Jardim Ampliação, São Paulo-SP",
+            "local": "São Paulo - Brasil",
             "contato": "",
             "descricao": "",
             "requisitos":
@@ -385,7 +338,7 @@
             "aplicacao": "http://connectabil.com",
             "abrangencia": "N",
             "formato": "P",
-            "local": "Pátria Nova, Novo Hamburgo - RS",
+            "local": "Novo Hamburgo - Brasil",
             "contato": "",
             "descricao": "Experiência no setor de contabilidade",
             "requisitos": []
@@ -452,7 +405,6 @@
                             <div class="text-start ps-4">
                                 <h5 class="mb-3">${item.titulo}</h5>
                                 ${item.empresa ? `<span class="text-truncate me-3"><i class="fa fa-building text-primary me-2"></i>${item.empresa}</span>` : ''}
-                                <span class="text-truncate me-3"><i class="fa fa-globe text-primary me-2"></i>${item.abrangencia == 'N' ? 'Nacional' : 'Internacional'}</span>
                                  ${item.local ? `<span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>${item.local}</span>` : ''}
                                 ${createFormato(item.formato)}
                             </div>
@@ -469,7 +421,6 @@
                 $button.click(function () {
                     $("#modalHeader").html($(`<h5 class="mb-3">${item.titulo}</h5>
                     ${item.empresa ? `<span class="text-truncate me-3"><i class="fa fa-building text-primary me-2"></i>${item.empresa}</span>` : ''}
-                    <span class="text-truncate me-3"><i class="fa fa-globe text-primary me-2"></i>${item.abrangencia == 'N' ? 'Nacional' : 'Internacional'}</span>
                     ${item.local ? `<span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>${item.local}</span>` : ''}
                     ${createFormato(item.formato)}`));
 
