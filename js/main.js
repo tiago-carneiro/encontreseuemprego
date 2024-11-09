@@ -48,7 +48,7 @@
         return false;
     });
 
-    $('.navbar-nav .nav-link').on('click', function () {
+    $('.navbar-nav .nav-link').on('click', function (event) {
         const navbarHeight = $('nav').outerHeight(true);
         event.preventDefault();
 
@@ -354,14 +354,36 @@
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const urlRegex = /^(https?:\/\/|www\.)[^\s/$.?#].[^\s]*$/;
 
-    function criarRegexIgnorandoAcentos(texto) {
+    var criarRegexIgnorandoAcentos = function (texto) {
         // Normaliza o texto para remover acentos
         const textoNormalizado = texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         // Cria uma expressão regular ignorando maiúsculas e minúsculas
         return new RegExp(textoNormalizado, "i");
     }
 
-    function createJobItems(reset) {
+    var createJobCard = function (item) {
+
+        const formato = (item) => {
+            switch (item.formato) {
+                case 'P':
+                    return '<span class="text-truncate me-3"><i class="fa fa-building-user text-primary me-2"></i>Presencial</span>';
+                case 'R':
+                    return '<span class="text-truncate me-3"><i class="fa fa-house-laptop text-primary me-2"></i>Remoto</span>';
+                case 'H':
+                    return '<span class="text-truncate me-3"><i class="fa fa-house-circle-check text-primary me-2"></i>Híbrido</span>';
+                default:
+                    return '';
+            }
+        };
+
+        const jobCard = `<h5 class="mb-3">${item.titulo}</h5>
+                                ${item.empresa ? `<span class="text-truncate me-3"><i class="fa fa-building text-primary me-2"></i>${item.empresa}</span>` : ''}
+                                ${item.local ? `<span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>${item.local}</span>` : ''}
+                                ${formato(item)}`;
+        return jobCard;
+    }
+
+    var createJobItems = function (reset) {
         const $container = $('#job-container');
         if (reset) {
             $container.html('');
@@ -382,12 +404,9 @@
             filteredItems = filteredItems.filter(vaga => {
                 return filtroList.some(filtro => {
                     const regex = criarRegexIgnorandoAcentos(filtro);
-
-                    // Verifica se o termo existe em algum campo
                     return regex.test(vaga.titulo.normalize("NFD").replace(/[\u0300-\u036f]/g, "")) ||
                         regex.test(vaga.descricao.normalize("NFD").replace(/[\u0300-\u036f]/g, "")) ||
-                        vaga.requisitos.some(requisito => regex.test(requisito.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))) //||
-                    //regex.test(vaga.local.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+                        vaga.requisitos.some(requisito => regex.test(requisito.normalize("NFD").replace(/[\u0300-\u036f]/g, "")))
                 });
             });
         }
@@ -409,10 +428,7 @@
                     <div class="row g-4">
                         <div class="col-sm-12 col-md-8 d-flex align-items-center">
                             <div class="text-start ps-4">
-                                <h5 class="mb-3">${item.titulo}</h5>
-                                ${item.empresa ? `<span class="text-truncate me-3"><i class="fa fa-building text-primary me-2"></i>${item.empresa}</span>` : ''}
-                                 ${item.local ? `<span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>${item.local}</span>` : ''}
-                                ${createFormato(item.formato)}
+                              ${createJobCard(item)}
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
@@ -425,16 +441,11 @@
 
                 const $button = $('<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Detalhes</button>');
                 $button.click(function () {
-                    $("#modalHeader").html($(`<h5 class="mb-3">${item.titulo}</h5>
-                    ${item.empresa ? `<span class="text-truncate me-3"><i class="fa fa-building text-primary me-2"></i>${item.empresa}</span>` : ''}
-                    ${item.local ? `<span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>${item.local}</span>` : ''}
-                    ${createFormato(item.formato)}`));
+                    $("#modalHeader").html(createJobCard(item));
 
                     const cadastro = emailRegex.test(item.aplicacao) ? `Envie email para <span class="text-primary" style="cursor: default; text-decoration: underline;">${item.aplicacao}</span>` :
                         urlRegex.test(item.aplicacao) ? `Para acessar o site de aplicação <a href="${item.aplicacao}" target="_blank" class="text-primary">clique aqui</a>` :
                             '';
-
-                    //const recrutador = 
 
                     $("#modalBody").html($(`<h4 class="mb-3">Descrição</h4>
                                         ${item.descricao ? `<p>${item.descricao}</p>` : ''}
@@ -464,19 +475,6 @@
             $ul.append($li);
         });
         return $ul.prop('outerHTML');;
-    }
-
-    var createFormato = function (value) {
-        switch (value) {
-            case 'P':
-                return '<span class="text-truncate me-3"><i class="fa fa-building-user text-primary me-2"></i>Presencial</span>';
-            case 'R':
-                return '<span class="text-truncate me-3"><i class="fa fa-house-laptop text-primary me-2"></i>Remoto</span>';
-            case 'H':
-                return '<span class="text-truncate me-3"><i class="fa fa-house-circle-check text-primary me-2"></i>Híbrido</span>';
-            default:
-                return '';
-        }
     }
 
     $('#verMaisVagas').click(function () {
