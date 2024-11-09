@@ -27,6 +27,12 @@
         }
     });
 
+    var synchronizeButtonWidths = function () {
+        const referenceWidth = $('#btn-maior').outerWidth();
+        $('.header-button').css('width', referenceWidth);
+    }
+
+    $(window).on('load resize', synchronizeButtonWidths);
 
     // Back to top button
     $(window).scroll(function () {
