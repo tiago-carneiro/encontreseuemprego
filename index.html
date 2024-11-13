@@ -99,23 +99,113 @@
                 <div class="container">
                     <div class="row g-2">
                         <div class="col-md-4">
-                            <input type="text" id="filtro" class="form-control border-0"
+                            <input type="text" id="filtro" class="form-control"
                                 placeholder="Título, descrição, atividade" />
                         </div>
                         <div class="col-md-4">
-                            <select class="form-select border-0" id="abrangencia">
-                                <option value="" selected>Nacional/Internacional</option>
-                                <option value="N">Nacional</option>
-                                <option value="I">Internacional</option>
-                            </select>
+                            <div class="dropdown">
+                                <button class="form-select w-100 d-flex justify-content-between align-items-center"
+                                    href="#" role="button" style="cursor: auto;" id="dropdownMenuLink"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span id="dropdownTextcidade" class="text-truncate">Cidade - País</span>
+                                </button>
+
+                                <ul class="dropdown-menu filter-dropdown w-100" aria-labelledby="dropdownMenuLink">
+                                    <li>
+                                        <div class="dropdown-header">
+                                            <label class="w-100">
+                                                Brasil
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-item">
+                                            <div class="form-check">
+                                                <input class="form-check-input cidade" type="checkbox" value="São Paulo"
+                                                    id="sp">
+                                                <label class="form-check-label w-100" for="sp">
+                                                    São Paulo
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-item">
+                                            <div class="form-check">
+                                                <input class="form-check-input cidade" type="checkbox"
+                                                    value="Rio de Janeiro" id="rj">
+                                                <label class="form-check-label w-100" for="rj">
+                                                    Rio de Janeiro
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-header">
+                                            <label class="w-100">
+                                                Portugal
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-item">
+                                            <div class="form-check">
+                                                <input class="form-check-input cidade" type="checkbox" value="Porto"
+                                                    id="pt">
+                                                <label class="form-check-label w-100" for="pt">
+                                                    Porto
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <select class="form-select border-0" id="formato">
-                                <option value="" selected>Presencial/Híbrido/Remoto</option>
-                                <option value="P">Presencial</option>
-                                <option value="H">Híbrido</option>
-                                <option value="R">Remoto</option>
-                            </select>
+                            <div class="dropdown">
+                                <button class="form-select w-100 d-flex justify-content-between align-items-center"
+                                    style="cursor: auto;" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <span id="dropdownTextformato" class="text-truncate">Presencial, Híbrido,
+                                        Remoto</span>
+                                </button>
+
+                                <ul class="dropdown-menu filter-dropdown w-100" aria-labelledby="dropdownMenuLink">
+                                    <li>
+                                        <div class="dropdown-item">
+                                            <div class="form-check">
+                                                <input class="form-check-input formato" type="checkbox"
+                                                    value="Presencial" id="checkboxPresencial">
+                                                <label class="form-check-label w-100" for="checkboxPresencial">
+                                                    Presencial
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-item">
+                                            <div class="form-check">
+                                                <input class="form-check-input formato" type="checkbox" value="Híbrido"
+                                                    id="checkboxHibrido">
+                                                <label class="form-check-label w-100" for="checkboxHibrido">
+                                                    Híbrido
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-item">
+                                            <div class="form-check">
+                                                <input class="form-check-input formato" type="checkbox" value="Remoto"
+                                                    id="checkboxRemoto">
+                                                <label class="form-check-label w-100" for="checkboxRemoto">
+                                                    Remoto
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -182,58 +272,43 @@
                         </div>
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                             <h1 class="mb-4">Sobre nós</h1>
-                            <p class="mb-4">Além de disponibilizar as vagas gratuitamente, contribuindo com
-                                recrutadores, sem a necessidade de cadastro, também oferecemos algumas consultorias.
+                            <p class="mb-4">O <spam class="text-primary">Encontre Seu Emprego</spam> nasceu de uma
+                                iniciativa voluntária da Fernanda Lara,
+                                consultora de recolocação especializada em recrutamento internacional. Com uma
+                                trajetória dedicada a conectar talentos a oportunidades, Fernanda criou a plataforma
+                                para facilitar o acesso à vagas de emprego e apoiar tanto recrutadores quanto
+                                candidatos.
                             </p>
-                            <p><i class="fa fa-check text-primary me-3"></i>Revisão personalizada do seu CV e perfil no
-                                LinkedIn</p>
-                            <p><i class="fa fa-check text-primary me-3"></i>Melhores estratégias e sites para busca de
-                                vagas</p>
-                            <p><i class="fa fa-check text-primary me-3"></i>Lista de empresas internacionais que
-                                contratam brasileiros;</p>
-
+                            <p class="mb-4">Além de disponibilizar vagas gratuitamente, Fernanda oferece serviços
+                                personalizados que atendem às necessidades de empresas e profissionais em busca de
+                                posicionamento no mercado de trabalho. Veja abaixo os principais serviços oferecidos.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="container-xxl wow fadeIn py-4" data-wow-delay="0.1s">
-                <div class="row justify-content-center mb-4">
-                    <div class="col-8">
+
+                <div class="row row-cols-1  row-cols-md-2 row-cols-lg-4 g-4">
+                    <div class="col">
                         <div class="card h-100">
                             <div class="card-body">
                                 <h5 class="card-title">Consultoria de Recolocação Especializada</h5>
-                                <p class="card-text"><i class="fa fa-check text-primary me-3"></i>Revisão
-                                    personalizada
-                                    do seu CV e perfil
-                                    no
-                                    LinkedIn</p>
-                                <p class="card-text"><i class="fa fa-check text-primary me-3"></i>Melhores
-                                    estratégias e
-                                    sites para busca
-                                    de
-                                    vagas</p>
-                                <p class="card-text"><i class="fa fa-check text-primary me-3"></i>Lista de empresas
-                                    internacionais que
-                                    contratam brasileiros;</p>
-                                <p class="card-text"><i class="fa fa-check text-primary me-3"></i>Acesso ao meu
-                                    modelo
-                                    de currículo.</p>
-                                <p class="card-text" style="font-size: 0.9rem;" class="text-muted"> <strong
-                                        class="text-primary">R$349</strong> - Valor referente a uma reunião de 1
-                                    hora.
-                                    Após a
-                                    reunião, dúvidas podem ser tiradas gratuitamente
 
-                                    (exceto novas reuniões)!</p>
+                                <p class="card-text">Revisão de CV e LinkedIn, estratégias de busca de vagas, empresas
+                                    internacionais
+                                    que contratam brasileiros e modelo de currículo.</p>
+
                                 <p><a href="https://calendly.com/fernanda-1hour/1-hour-meeting"
                                         class="btn btn-primary">Quero agendar</a></p>
+
+                                <small class="text-muted">
+                                    <strong class="text-primary">R$349</strong> - Reunião de 1 hora.
+                                </small>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="row row-cols-1 row-cols-md-3 g-4">
                     <div class="col">
                         <div class="card h-100">
                             <div class="card-body">

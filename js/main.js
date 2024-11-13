@@ -501,5 +501,28 @@
 
     createJobItems();
 
+    $(".filter-dropdown").click(function (event) {
+        event.stopPropagation();
+    });
+
+    function updateDropdownText(tag, defaultText) {
+        console.log(tag);
+        const checkboxes = document.querySelectorAll(`.form-check-input.${tag}`);
+        const selected = Array.from(checkboxes)
+            .filter(checkbox => checkbox.checked)
+            .map(checkbox => checkbox.value);
+
+        const dropdownText = document.getElementById(`dropdownText${tag}`);
+        dropdownText.textContent = selected.length > 0 ? selected.join(', ') : defaultText;
+    }
+
+    document.querySelectorAll('.form-check-input.cidade').forEach(checkbox => {
+        checkbox.addEventListener('change', function () { updateDropdownText('cidade', 'Cidade - País') });
+    });
+
+    document.querySelectorAll('.form-check-input.formato').forEach(checkbox => {
+        checkbox.addEventListener('change', function () { updateDropdownText('formato', 'Presencial, Híbrido, Remoto') });
+    });
+
 })(jQuery);
 
