@@ -395,8 +395,16 @@
 
         let filteredItems = vagas;
         const filtro = $('#filtro').val();
-        const abrangencia = $('#abrangencia').val();
-        const formato = $('#formato').val();
+
+        const formato = $(`.form-check-input.formato`)
+            .filter(':checked')
+            .map(function () { return $(this).attr('data-search'); })
+            .get();
+
+        const cidadePais = $(`.form-check-input.cidade`)
+            .filter(':checked')
+            .map(function () { return $(this).attr('data-search'); })
+            .get();
 
         if (filtro) {
             const filtroList = filtro.split(',').map(f => f.trim());
@@ -411,12 +419,12 @@
             });
         }
 
-        if (abrangencia) {
-            filteredItems = filteredItems.filter(f => f.abrangencia === abrangencia);
+        if (cidadePais.length > 0) {
+            filteredItems = filteredItems.filter(f => cidadePais.includes(f.local));
         }
 
-        if (formato) {
-            filteredItems = filteredItems.filter(f => f.formato === formato);
+        if (formato.length > 0) {
+            filteredItems = filteredItems.filter(f => formato.includes(f.formato));
         }
 
         const itensPagina = filteredItems.slice(inicio, fim);
@@ -482,14 +490,6 @@
         createJobItems();
     });
 
-    let timeout;
-    $('#abrangencia, #formato').on('change', function () {
-        createJobItemsWithDelay(true);
-    });
-
-    $('#filtro').on('input', function () {
-        createJobItemsWithDelay(true);
-    });
 
     var createJobItemsWithDelay = function () {
         clearTimeout(timeout);
@@ -501,27 +501,88 @@
 
     createJobItems();
 
+    //Filtro
+    let timeout;
+
+    $('#filtro').on('input', function () {
+        createJobItemsWithDelay(true);
+    });
+
     $(".filter-dropdown").click(function (event) {
         event.stopPropagation();
     });
 
-    function updateDropdownText(tag, defaultText) {
-        console.log(tag);
-        const checkboxes = document.querySelectorAll(`.form-check-input.${tag}`);
-        const selected = Array.from(checkboxes)
-            .filter(checkbox => checkbox.checked)
-            .map(checkbox => checkbox.value);
+    var createFiltroCidadePais = function () {
 
-        const dropdownText = document.getElementById(`dropdownText${tag}`);
-        dropdownText.textContent = selected.length > 0 ? selected.join(', ') : defaultText;
+        let paisesLocais = {};
+        vagas.forEach(vaga => {
+            const local = vaga.local;
+            if (local) {
+                const [cidade, pais] = local.split(' - ');
+                if (pais) {
+                    if (!paisesLocais[pais]) paisesLocais[pais] = new Set();
+                    paisesLocais[pais].add(cidade.trim());
+                }
+            }
+        });
+
+        // Converte o objeto em array para ordenar os países
+        const paisesOrdenados = Object.keys(paisesLocais).sort();
+
+        // Gera o HTML dinâmico para o dropdown
+        paisesOrdenados.forEach(pais => {
+            // Adiciona o cabeçalho do país
+            $('#cidadeList').append(`
+            <li>
+                <div class="dropdown-header">
+                    <label class="w-100">${pais}</label>
+                </div>
+            </li>
+        `);
+
+            // Converte o Set de cidades em array e ordena
+            const cidadesOrdenadas = Array.from(paisesLocais[pais]).sort();
+
+            // Adiciona cada cidade ao dropdown
+            cidadesOrdenadas.forEach(cidade => {
+                const id = cidade.toLowerCase().replace(/ /g, "-");
+                $('#cidadeList').append(`
+                <li>
+                    <div class="dropdown-item">
+                        <div class="form-check">
+                            <input class="form-check-input cidade" type="checkbox" data-search="${cidade} - ${pais}" value="${cidade}" id="${id}">
+                            <label class="form-check-label w-100" for="${id}">${cidade}</label>
+                        </div>
+                    </div>
+                </li>
+            `);
+            });
+        });
+
     }
 
-    document.querySelectorAll('.form-check-input.cidade').forEach(checkbox => {
-        checkbox.addEventListener('change', function () { updateDropdownText('cidade', 'Cidade - País') });
+    createFiltroCidadePais();
+
+    var updateDropdownText = function (tag) {
+        const checkboxes = $(`.form-check-input.${tag}`);
+        const selected = checkboxes
+            .filter(':checked')
+            .map(function () { return $(this).val(); })
+            .get();
+
+        const dropdownText = $(`#${tag}Title`);
+
+        dropdownText.html(selected.length > 0 ? selected.join(', ') : dropdownText.data('default'));
+
+        createJobItemsWithDelay(true);
+    }
+
+    $('.form-check-input.cidade').on('change', function () {
+        updateDropdownText('cidade');
     });
 
-    document.querySelectorAll('.form-check-input.formato').forEach(checkbox => {
-        checkbox.addEventListener('change', function () { updateDropdownText('formato', 'Presencial, Híbrido, Remoto') });
+    $('.form-check-input.formato').on('change', function () {
+        updateDropdownText('formato');
     });
 
 })(jQuery);

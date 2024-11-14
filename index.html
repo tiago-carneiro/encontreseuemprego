@@ -107,57 +107,13 @@
                                 <button class="form-select w-100 d-flex justify-content-between align-items-center"
                                     href="#" role="button" style="cursor: auto;" id="dropdownMenuLink"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span id="dropdownTextcidade" class="text-truncate">Cidade - País</span>
+                                    <span id="cidadeTitle" data-default="Cidade - País" class="text-truncate">Cidade -
+                                        País</span>
                                 </button>
 
-                                <ul class="dropdown-menu filter-dropdown w-100" aria-labelledby="dropdownMenuLink">
-                                    <li>
-                                        <div class="dropdown-header">
-                                            <label class="w-100">
-                                                Brasil
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="dropdown-item">
-                                            <div class="form-check">
-                                                <input class="form-check-input cidade" type="checkbox" value="São Paulo"
-                                                    id="sp">
-                                                <label class="form-check-label w-100" for="sp">
-                                                    São Paulo
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="dropdown-item">
-                                            <div class="form-check">
-                                                <input class="form-check-input cidade" type="checkbox"
-                                                    value="Rio de Janeiro" id="rj">
-                                                <label class="form-check-label w-100" for="rj">
-                                                    Rio de Janeiro
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="dropdown-header">
-                                            <label class="w-100">
-                                                Portugal
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="dropdown-item">
-                                            <div class="form-check">
-                                                <input class="form-check-input cidade" type="checkbox" value="Porto"
-                                                    id="pt">
-                                                <label class="form-check-label w-100" for="pt">
-                                                    Porto
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </li>
+                                <ul id="cidadeList" class="dropdown-menu filter-dropdown w-100"
+                                    aria-labelledby="dropdownMenuLink">
+
                                 </ul>
                             </div>
                         </div>
@@ -166,7 +122,8 @@
                                 <button class="form-select w-100 d-flex justify-content-between align-items-center"
                                     style="cursor: auto;" id="dropdownMenuLink" data-bs-toggle="dropdown"
                                     aria-expanded="false">
-                                    <span id="dropdownTextformato" class="text-truncate">Presencial, Híbrido,
+                                    <span id="formatoTitle" data-default="Presencial, Híbrido, Remoto"
+                                        class="text-truncate">Presencial, Híbrido,
                                         Remoto</span>
                                 </button>
 
@@ -174,7 +131,7 @@
                                     <li>
                                         <div class="dropdown-item">
                                             <div class="form-check">
-                                                <input class="form-check-input formato" type="checkbox"
+                                                <input class="form-check-input formato" type="checkbox" data-search="P"
                                                     value="Presencial" id="checkboxPresencial">
                                                 <label class="form-check-label w-100" for="checkboxPresencial">
                                                     Presencial
@@ -186,7 +143,7 @@
                                         <div class="dropdown-item">
                                             <div class="form-check">
                                                 <input class="form-check-input formato" type="checkbox" value="Híbrido"
-                                                    id="checkboxHibrido">
+                                                    data-search="H" id="checkboxHibrido">
                                                 <label class="form-check-label w-100" for="checkboxHibrido">
                                                     Híbrido
                                                 </label>
@@ -197,7 +154,7 @@
                                         <div class="dropdown-item">
                                             <div class="form-check">
                                                 <input class="form-check-input formato" type="checkbox" value="Remoto"
-                                                    id="checkboxRemoto">
+                                                    data-search="R" id="checkboxRemoto">
                                                 <label class="form-check-label w-100" for="checkboxRemoto">
                                                     Remoto
                                                 </label>
