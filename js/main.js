@@ -74,8 +74,6 @@
         smoothScrollAndHighlight('#solucoes', '.linksobre');
     });
 
-
-
     const itensPorPagina = 6;
     let paginaAtual = 1;
     let vagas = [
