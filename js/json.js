@@ -41,7 +41,7 @@
             "empresa": "Snaptech Solutions",
             "aplicacao": "leticia.almeida@snaptechsolutions.io",
             "formato": "R",
-            "cidade": "Portugal",
+            "cidade": "Lisboa",
             "pais": "Portugal",
             "descricao": "Residir em Portugal - Diferenciais: Experiência com Test-Driven Development (TDD), fluência em Inglês",
             "requisitos": ["3+ anos de experiencia com Kotlin para desenvolvimento Android", "Familiaridade com arquitetura MVVM e desenvolvimento de UI"]
@@ -51,7 +51,7 @@
             "empresa": "Snaptech Solutions",
             "aplicacao": "leticia.almeida@snaptechsolutions.io",
             "formato": "R",
-            "cidade": "Portugal",
+            "cidade": "Lisboa",
             "pais": "Portugal",
             "descricao": "Residir em Portugal - Forte foco na qualidade e atenção aos detalhes",
             "requisitos": ["3+ anos de experiência em Swift para desenvolvimento iOS", "Proficiência em arquitetura MVVM e testes de UI", "Inglês avançado para interações com executivos de nível C"]
@@ -61,7 +61,7 @@
             "empresa": "Snaptech Solutions",
             "aplicacao": "leticia.almeida@snaptechsolutions.io",
             "formato": "H",
-            "cidade": "Portugal",
+            "cidade": "Lisboa",
             "pais": "Portugal",
             "descricao": "Residir em Portugal - Habilidades de Resolução de problemas - Diferenciais: Metodologia Ágil, fluência em Inglês",
             "requisitos": ["3+ anos de experiencia com C#, ASP.NET, e/ou .NET Core", "Conhecimentos com React ou Angular"]
@@ -71,7 +71,7 @@
             "empresa": "Snaptech Solutions",
             "aplicacao": "leticia.almeida@snaptechsolutions.io",
             "formato": "H",
-            "cidade": "Portugal",
+            "cidade": "Lisboa",
             "pais": "Portugal",
             "descricao": "Residir em Portugal - Habilidades de Resolução de problemas - Diferenciais: CI/CD, Metodologia Ágil, fluência em Inglês",
             "requisitos": ["3+ anos de experiencia com Java e Spring Framework.,"]
