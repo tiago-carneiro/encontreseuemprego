@@ -269,3 +269,7 @@
     padding-right: 0;
     border-right: none
 }
+
+.text-justify {
+    text-align: justify;
+}
