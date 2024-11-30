@@ -1,9 +1,6 @@
 (function ($) {
     "use strict";
-    /* 
-    https://linktr.ee/hrfernandalara
-    https://www.roberthalf.com/br/pt
-    */
+
     // Spinner
     var spinner = function () {
         setTimeout(function () {
@@ -13,7 +10,6 @@
         }, 1);
     };
     spinner();
-
 
     // Initiate the wowjs
     new WOW().init();
@@ -27,12 +23,22 @@
         }
     });
 
-    var synchronizeButtonWidths = function () {
-        const referenceWidth = $('.linksolucoes').outerWidth();
-        $('.header-button').css('width', referenceWidth);
+    var adjustButtonSizes = function () {
+        let maxWidth = 0;
+
+        // Calcula o maior tamanho
+        $('.header-button').each(function () {
+            maxWidth = Math.max(maxWidth, $(this).outerWidth());
+        });
+
+        // Aplica o maior tamanho em todos os botões
+        $('.header-button').css('width', maxWidth + 'px');
     }
 
-    $(window).on('load resize', synchronizeButtonWidths);
+    $(document).ready(function () {
+        adjustButtonSizes();
+        $(window).resize(adjustButtonSizes);
+    });
 
     // Back to top button
     $(window).scroll(function () {
@@ -313,4 +319,3 @@
     });
 
 })(jQuery);
-
