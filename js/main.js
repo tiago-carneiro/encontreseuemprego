@@ -1,6 +1,6 @@
 (function ($) {
     "use strict";
-
+    //https://docs.google.com/spreadsheets/d/e/2PACX-1vR2qP4G1dW3K-q3bkfvL-OQNJQpFEtNJR3hU3gMYWKECbOjPiomAhNPMjsxLfcWQ9Y_grPpVoUnTxff/pubhtml
     // Spinner
     var spinner = function () {
         setTimeout(function () {
@@ -32,7 +32,7 @@
         });
 
         // Aplica o maior tamanho em todos os botões
-        $('.header-button').css('width', maxWidth + 'px');
+        $('.header-button').css('width', (maxWidth + 5) + 'px');
     }
 
     $(document).ready(function () {
@@ -97,11 +97,11 @@
 
         const formato = (item) => {
             switch (item.formato) {
-                case 'P':
+                case 'Presencial':
                     return '<span class="text-truncate me-3"><i class="fa fa-building-user text-primary me-2"></i>Presencial</span>';
-                case 'R':
+                case 'Remoto':
                     return '<span class="text-truncate me-3"><i class="fa fa-house-laptop text-primary me-2"></i>Remoto</span>';
-                case 'H':
+                case 'Híbrido':
                     return '<span class="text-truncate me-3"><i class="fa fa-house-circle-check text-primary me-2"></i>Híbrido</span>';
                 default:
                     return '';
@@ -147,8 +147,7 @@
                 return filtroList.some(filtro => {
                     const regex = criarRegexIgnorandoAcentos(filtro);
                     return regex.test(vaga.titulo.normalize("NFD").replace(/[\u0300-\u036f]/g, "")) ||
-                        regex.test(vaga.descricao.normalize("NFD").replace(/[\u0300-\u036f]/g, "")) ||
-                        vaga.requisitos.some(requisito => regex.test(requisito.normalize("NFD").replace(/[\u0300-\u036f]/g, "")))
+                        regex.test(vaga.descricao.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
                 });
             });
         }
@@ -191,9 +190,8 @@
                                 '';
 
                     $("#modalBody").html($(`<h4 class="mb-3">Descrição</h4>
-                                        ${item.descricao ? `<p>${item.descricao}</p>` : ''}
-                                        ${item.requisitos.length > 0 ? createLista(item.requisitos) : ''}
-                                        <h4 class="mb-3">Cadastro</h4><p>${cadastro}</p>`));
+                                        ${item.descricao ? `<p>${item.descricao.replace(/\n/g, '<br>')}</p>` : ''}
+                                        <h4 class="mb-3 mt-5">Cadastro</h4><p>${cadastro}</p>`));
                 });
 
                 $jobItem.find('#verMaisDiv').append($button);
@@ -209,15 +207,6 @@
             $('#verMaisVagas').hide();
         else
             $('#verMaisVagas').show();
-    }
-
-    var createLista = function (items) {
-        const $ul = $('<ul class="list-unstyled"></ul>');
-        items.forEach(item => {
-            const $li = $(`<li><i class="fa fa-angle-right text-primary me-2"></i>${item}</li>`);
-            $ul.append($li);
-        });
-        return $ul.prop('outerHTML');;
     }
 
     $('#verMaisVagas').click(function () {
