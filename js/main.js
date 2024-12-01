@@ -33,15 +33,21 @@
         }
     });
 
-    //adjustButtonSizes
-    $(document).ready(function () {
+    var adjustButtonSizes = function () {
         let maxWidth = 0;
 
         $('.header-button').each(function () {
             maxWidth = Math.max(maxWidth, $(this).outerWidth());
         });
 
-        $('.header-button').css('width', (maxWidth + 5) + 'px');
+        $('.header-button').css('min-width', maxWidth + 'px');
+        console.log('size ' + maxWidth);
+    }
+
+    //adjustButtonSizes
+    $(document).ready(function () {
+        adjustButtonSizes();
+        $(window).resize(adjustButtonSizes);
     });
 
     $('.back-to-top').click(function () {
