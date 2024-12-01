@@ -1,6 +1,8 @@
 (function ($) {
     "use strict";
     //https://docs.google.com/spreadsheets/d/e/2PACX-1vR2qP4G1dW3K-q3bkfvL-OQNJQpFEtNJR3hU3gMYWKECbOjPiomAhNPMjsxLfcWQ9Y_grPpVoUnTxff/pubhtml
+
+
     // Spinner
     var spinner = function () {
         setTimeout(function () {
@@ -14,39 +16,36 @@
     // Initiate the wowjs
     new WOW().init();
 
-    // Sticky Navbar
     $(window).scroll(function () {
+
+        // Sticky Navbar
         if ($(this).scrollTop() > 300) {
             $('.sticky-top').css('top', '0px');
         } else {
             $('.sticky-top').css('top', '-100px');
+        }
+
+        // Back to top button
+        if ($(this).scrollTop() > 300) {
+            $('.back-to-top').fadeIn('slow');
+        } else {
+            $('.back-to-top').fadeOut('slow');
         }
     });
 
     var adjustButtonSizes = function () {
         let maxWidth = 0;
 
-        // Calcula o maior tamanho
         $('.header-button').each(function () {
             maxWidth = Math.max(maxWidth, $(this).outerWidth());
         });
 
-        // Aplica o maior tamanho em todos os botões
         $('.header-button').css('width', (maxWidth + 5) + 'px');
     }
 
     $(document).ready(function () {
         adjustButtonSizes();
         $(window).resize(adjustButtonSizes);
-    });
-
-    // Back to top button
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 300) {
-            $('.back-to-top').fadeIn('slow');
-        } else {
-            $('.back-to-top').fadeOut('slow');
-        }
     });
 
     $('.back-to-top').click(function () {
@@ -80,17 +79,16 @@
         smoothScrollAndHighlight('#solucoes', '.linksobre');
     });
 
-    const itensPorPagina = 6;
-    let paginaAtual = 1;
-
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const urlRegex = /^(https?:\/\/|www\.)[^\s/$.?#].[^\s]*$/;
+    const phoneRegex = /^(\+?\d{1,4}[\s\-]?)?(\(?\d{2,3}\)?[\s\-]?)?[\d\s\-]{6,14}$/;
 
-    var criarRegexIgnorandoAcentos = function (texto) {
-        // Normaliza o texto para remover acentos
-        const textoNormalizado = texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        // Cria uma expressão regular ignorando maiúsculas e minúsculas
-        return new RegExp(textoNormalizado, "i");
+    var normalizeText = function (value) {
+        return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
+    var regexNormalizedText = function (value) {
+        return new RegExp(normalizeText(value), "i");
     }
 
     var createJobCard = function (item) {
@@ -116,16 +114,18 @@
     }
 
     let vagas = $.vagas;
+    const maxItems = 6;
+    let currentPage = 1;
 
     var createJobItems = function (reset) {
         const $container = $('#job-container');
         if (reset) {
             $container.html('');
-            paginaAtual = 1;
+            currentPage = 1;
         }
 
-        const inicio = (paginaAtual - 1) * itensPorPagina;
-        const fim = inicio + itensPorPagina;
+        const startIndex = (currentPage - 1) * maxItems;
+        const endIndex = startIndex + maxItems;
 
         let filteredItems = vagas;
         const filtro = $('#filtro').val();
@@ -145,9 +145,9 @@
 
             filteredItems = filteredItems.filter(vaga => {
                 return filtroList.some(filtro => {
-                    const regex = criarRegexIgnorandoAcentos(filtro);
-                    return regex.test(vaga.titulo.normalize("NFD").replace(/[\u0300-\u036f]/g, "")) ||
-                        regex.test(vaga.descricao.normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
+                    const regex = regexNormalizedText(filtro);
+                    return regex.test(normalizeText(vaga.titulo)) ||
+                        regex.test(normalizeText(vaga.descricao))
                 });
             });
         }
@@ -160,10 +160,10 @@
             filteredItems = filteredItems.filter(f => formato.includes(f.formato));
         }
 
-        const itensPagina = filteredItems.slice(inicio, fim);
+        const paginatedItems = filteredItems.slice(startIndex, endIndex);
 
-        if (itensPagina.length > 0) {
-            $.each(itensPagina, function (index, item) {
+        if (paginatedItems.length > 0) {
+            $.each(paginatedItems, function (index, item) {
                 const $jobItem = $(`
                 <div class="job-item p-4 mb-4">
                     <div class="row g-4">
@@ -184,14 +184,14 @@
                 $button.click(function () {
                     $("#modalHeader").html(createJobCard(item));
 
-                    const cadastro = emailRegex.test(item.aplicacao) ? `Enviar email para <span class="text-primary" style="cursor: default; text-decoration: underline;">${item.aplicacao}</span>` :
+                    const aplicacao = emailRegex.test(item.aplicacao) ? `Enviar email para <span class="text-primary" style="cursor: default; text-decoration: underline;">${item.aplicacao}</span>` :
                         urlRegex.test(item.aplicacao) ? `Para acessar o site de aplicação <a href="${item.aplicacao}" target="_blank" rel="noopener noreferrer" class="text-primary">clique aqui</a>` :
-                            item.aplicacao.includes('+') ? `Entrar em contato pelo número: ${item.aplicacao}` :
+                            phoneRegex.test(item.aplicacao) ? `Entrar em contato pelo número: ${item.aplicacao}` :
                                 '';
 
                     $("#modalBody").html($(`<h4 class="mb-3">Descrição</h4>
                                         ${item.descricao ? `<p>${item.descricao.replace(/\n/g, '<br>')}</p>` : ''}
-                                        <h4 class="mb-3 mt-5">Cadastro</h4><p>${cadastro}</p>`));
+                                        <h4 class="mb-3 mt-5">Cadastro</h4><p>${aplicacao}</p>`));
                 });
 
                 $jobItem.find('#verMaisDiv').append($button);
@@ -203,14 +203,14 @@
             $container.append('<p class="mb-5 mt-4 fs-5">Nenhuma vaga encontrada com os filtros selecionados</p>');
         }
 
-        if (fim >= filteredItems.length)
+        if (endIndex >= filteredItems.length)
             $('#verMaisVagas').hide();
         else
             $('#verMaisVagas').show();
     }
 
     $('#verMaisVagas').click(function () {
-        paginaAtual++;
+        currentPage++;
         createJobItems();
     });
 
@@ -248,12 +248,9 @@
             }
         });
 
-        // Converte o objeto em array para ordenar os países
         const paisesOrdenados = Object.keys(paisesLocais).sort();
 
-        // Gera o HTML dinâmico para o dropdown
         paisesOrdenados.forEach(pais => {
-            // Adiciona o cabeçalho do país
             $('#cidadeList').append(`
             <li>
                 <div class="dropdown-header">
@@ -262,11 +259,9 @@
             </li>
         `);
 
-            // Converte o Set de cidades em array e ordena
-            const cidadesOrdenadas = Array.from(paisesLocais[pais]).sort();
+            const sortedItems = Array.from(paisesLocais[pais]).sort();
 
-            // Adiciona cada cidade ao dropdown
-            cidadesOrdenadas.forEach(cidade => {
+            sortedItems.forEach(cidade => {
                 const id = cidade.toLowerCase().replace(/ /g, "-");
                 $('#cidadeList').append(`
                 <li>
