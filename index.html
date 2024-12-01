@@ -32,7 +32,7 @@
     </head>
 
     <body>
-        <div class="bg-white p-0" id="inicio">
+        <div class="bg-white p-0">
             <!-- Spinner Start -->
             <div id="spinner"
                 class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -69,7 +69,7 @@
 
 
             <!-- header Start -->
-            <div class="py-2 bg-dark page-header">
+            <div class="py-2 bg-dark page-header section" id="inicio">
                 <div class="container my-5 pt-5 pb-5">
                     <h1 class="display-3 text-white animated slideInDown mb-4">Conectando talentos e
                         oportunidades</h1>
@@ -96,92 +96,95 @@
             <!-- header End -->
 
             <!-- Search Start -->
-            <div class="container-fluid bg-primary wow fadeIn" id="vagas" data-wow-delay="0.1s" style="padding: 35px;">
-                <div class="container">
-                    <div class="row g-2">
-                        <div class="col-md-4">
-                            <input type="text" id="filtro" class="form-control"
-                                placeholder="Título, descrição, atividade" />
-                        </div>
-                        <div class="col-md-4">
-                            <div class="dropdown">
-                                <button class="form-select w-100 d-flex justify-content-between align-items-center"
-                                    href="#" role="button" style="cursor: auto;" id="dropdownCidades"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span id="cidadeTitle" data-default="Cidade - País" class="text-truncate">Cidade -
-                                        País</span>
-                                </button>
-
-                                <ul id="cidadeList" class="dropdown-menu filter-dropdown w-100"
-                                    aria-labelledby="dropdownCidades">
-
-                                </ul>
+            <div class="section" id="vagas">
+                <div class="container-fluid bg-primary wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
+                    <div class="container">
+                        <div class="row g-2">
+                            <div class="col-md-4">
+                                <input type="text" id="filtro" class="form-control"
+                                    placeholder="Título, descrição, atividade" />
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="dropdown">
-                                <button class="form-select w-100 d-flex justify-content-between align-items-center"
-                                    style="cursor: auto;" id="dropdownFormato" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <span id="formatoTitle" data-default="Presencial, Híbrido, Remoto"
-                                        class="text-truncate">Presencial, Híbrido,
-                                        Remoto</span>
-                                </button>
+                            <div class="col-md-4">
+                                <div class="dropdown">
+                                    <button class="form-select w-100 d-flex justify-content-between align-items-center"
+                                        href="#" role="button" style="cursor: auto;" id="dropdownCidades"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span id="cidadeTitle" data-default="Cidade - País" class="text-truncate">Cidade
+                                            -
+                                            País</span>
+                                    </button>
 
-                                <ul class="dropdown-menu filter-dropdown w-100" aria-labelledby="dropdownFormato">
-                                    <li>
-                                        <div class="dropdown-item">
-                                            <div class="form-check">
-                                                <input class="form-check-input formato" type="checkbox"
-                                                    data-search="Presencial" value="Presencial" id="checkboxPresencial">
-                                                <label class="form-check-label w-100" for="checkboxPresencial">
-                                                    Presencial
-                                                </label>
+                                    <ul id="cidadeList" class="dropdown-menu filter-dropdown w-100"
+                                        aria-labelledby="dropdownCidades">
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="dropdown">
+                                    <button class="form-select w-100 d-flex justify-content-between align-items-center"
+                                        style="cursor: auto;" id="dropdownFormato" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <span id="formatoTitle" data-default="Presencial, Híbrido, Remoto"
+                                            class="text-truncate">Presencial, Híbrido,
+                                            Remoto</span>
+                                    </button>
+
+                                    <ul class="dropdown-menu filter-dropdown w-100" aria-labelledby="dropdownFormato">
+                                        <li>
+                                            <div class="dropdown-item">
+                                                <div class="form-check">
+                                                    <input class="form-check-input formato" type="checkbox"
+                                                        data-search="Presencial" value="Presencial"
+                                                        id="checkboxPresencial">
+                                                    <label class="form-check-label w-100" for="checkboxPresencial">
+                                                        Presencial
+                                                    </label>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="dropdown-item">
-                                            <div class="form-check">
-                                                <input class="form-check-input formato" type="checkbox" value="Híbrido"
-                                                    data-search="Híbrido" id="checkboxHibrido">
-                                                <label class="form-check-label w-100" for="checkboxHibrido">
-                                                    Híbrido
-                                                </label>
+                                        </li>
+                                        <li>
+                                            <div class="dropdown-item">
+                                                <div class="form-check">
+                                                    <input class="form-check-input formato" type="checkbox"
+                                                        value="Híbrido" data-search="Híbrido" id="checkboxHibrido">
+                                                    <label class="form-check-label w-100" for="checkboxHibrido">
+                                                        Híbrido
+                                                    </label>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="dropdown-item">
-                                            <div class="form-check">
-                                                <input class="form-check-input formato" type="checkbox" value="Remoto"
-                                                    data-search="Remoto" id="checkboxRemoto">
-                                                <label class="form-check-label w-100" for="checkboxRemoto">
-                                                    Remoto
-                                                </label>
+                                        </li>
+                                        <li>
+                                            <div class="dropdown-item">
+                                                <div class="form-check">
+                                                    <input class="form-check-input formato" type="checkbox"
+                                                        value="Remoto" data-search="Remoto" id="checkboxRemoto">
+                                                    <label class="form-check-label w-100" for="checkboxRemoto">
+                                                        Remoto
+                                                    </label>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Search End -->
+                <!-- Search End -->
 
-            <!-- Jobs Start -->
-            <div class="container-xxl py-4 section">
-                <div class="container">
-                    <div class="text-center wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="fade show p-0" id="job-container">
+                <!-- Jobs Start -->
+                <div class="container-xxl py-4">
+                    <div class="container">
+                        <div class="text-center wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="fade show p-0" id="job-container">
 
+                            </div>
+                            <button id="verMaisVagas" class="btn btn-primary py-3 px-5">Ver mais...</button>
                         </div>
-                        <button id="verMaisVagas" class="btn btn-primary py-3 px-5">Ver mais...</button>
                     </div>
                 </div>
             </div>
-
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
