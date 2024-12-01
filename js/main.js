@@ -33,7 +33,8 @@
         }
     });
 
-    var adjustButtonSizes = function () {
+    //adjustButtonSizes
+    $(document).ready(function () {
         let maxWidth = 0;
 
         $('.header-button').each(function () {
@@ -41,11 +42,6 @@
         });
 
         $('.header-button').css('width', (maxWidth + 5) + 'px');
-    }
-
-    $(document).ready(function () {
-        adjustButtonSizes();
-        $(window).resize(adjustButtonSizes);
     });
 
     $('.back-to-top').click(function () {
