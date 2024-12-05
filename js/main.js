@@ -117,9 +117,14 @@
         };
 
         const jobCard = `<h5 class="mb-3">${item.titulo}</h5>
-                                ${item.empresa ? `<span class="text-truncate me-3"><i class="fa fa-building text-primary me-2"></i>${item.empresa}</span>` : ''}
-                                ${item.cidade ? `<span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>${item.cidade} - ${item.pais}</span>` : ''}
-                                ${formato(item)}`;
+                        ${item.empresa ? `<span class="text-truncate me-3"><i class="fa fa-building text-primary me-2"></i>${item.empresa}</span>` : ''}
+                        <span class="text-truncate me-3">
+                            <i class="fa fa-map-marker-alt text-primary me-2"></i>
+                            ${item.cidade ? `${item.cidade} - ` : ''}${item.pais}
+                        </span>
+                        ${formato(item)}
+                    `;
+
         return jobCard;
     }
 
