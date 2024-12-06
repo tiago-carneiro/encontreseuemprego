@@ -2,7 +2,7 @@
     "use strict";
     //https://docs.google.com/spreadsheets/d/e/2PACX-1vR2qP4G1dW3K-q3bkfvL-OQNJQpFEtNJR3hU3gMYWKECbOjPiomAhNPMjsxLfcWQ9Y_grPpVoUnTxff/pubhtml
 
-
+    const currentPolicyVersion = "1.0";
     // Spinner
     var spinner = function () {
         setTimeout(function () {
@@ -58,10 +58,28 @@
         $('.header-button').css('min-width', maxWidth + 'px');
     }
 
-    //adjustButtonSizes
     $(document).ready(function () {
         adjustButtonSizes();
         $(window).resize(adjustButtonSizes);
+
+        const savedPolicyVersion = localStorage.getItem('privacyPolicyVersion');
+
+        if (savedPolicyVersion === currentPolicyVersion) {
+            $('#privacyBanner').hide();
+            $('#privacyOverlay').hide();
+            $('body').removeClass('block-scroll');
+        } else {
+            $('body').addClass('block-scroll');
+        }
+
+        $('#acceptPrivacy').on('click', function () {
+            localStorage.setItem('privacyPolicyVersion', currentPolicyVersion);
+
+            $('#privacyBanner').hide();
+            $('#privacyOverlay').hide();
+
+            $('body').removeClass('block-scroll');
+        });
     });
 
     $('.back-to-top').click(function () {

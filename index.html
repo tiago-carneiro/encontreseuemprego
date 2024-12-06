@@ -40,7 +40,7 @@
         <meta property="og:type" content="website">
     </head>
 
-    <body>
+    <body class="block-scroll">
         <div class="bg-white p-0">
             <!-- Spinner Start -->
             <div id="spinner"
@@ -400,14 +400,46 @@
 
             <!-- Footer Start -->
             <div class="container-fluid bg-dark text-white-50 footer pt-3 pb-3 wow fadeIn" data-wow-delay="0.1s">
-                <div class="text-center">
-                    Ao utilizar qualquer vaga deste site, não esqueça de nos mencionar.
+
+                <div class="container-xxl">
+
+                    <div class="row">
+
+                        <div class="col-sm-12 col-md-9 text-center text-md-start mb-3 mb-md-0">
+                            Ao utilizar
+                            qualquer vaga deste site, não esqueça de nos mencionar.
+                        </div>
+                        <div class="col-sm-12 col-md-3 text-center text-nowrap text-md-end">
+                            <a href="politicas-privacidade">Políticas de privacidade</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- Footer End -->
             <!-- Back to Top -->
             <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-arrow-up-long"></i></a>
         </div>
+
+        <!-- Overlay para bloquear interações -->
+        <div class="privacy-overlay" id="privacyOverlay"></div>
+
+        <!-- Banner de Privacidade -->
+        <div class="privacy-banner" id="privacyBanner">
+            <div class="container-xxl py-4">
+                <div class="d-flex align-items-center">
+                    <div class="flex-grow-1 text-start me-4">
+                        <p class="mb-0">
+                            Este site não utiliza cookies próprios, mas ao ser redirecionado para sites de terceiros,
+                            você pode ser exposto a cookies desses sites. <br>Ao continuar a navegar, você concorda
+                            com o uso de cookies desses sites externos. <a href="politicas-privacidade"
+                                class="text-decoration-underline">políticas de privacidade</a>.
+                        </p>
+                    </div>
+                    <button id="acceptPrivacy" class="btn btn-primary ps-4 pe-4 pt-2 pb-2">Aceitar</button>
+                </div>
+            </div>
+        </div>
+
 
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
